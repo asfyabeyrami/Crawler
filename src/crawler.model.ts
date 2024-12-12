@@ -16,13 +16,13 @@ export class content extends Model {
   id: number;
 
   @Column({
-    type: Sequelize.TEXT,
+    type: Sequelize.JSONB,
     allowNull: false,
   })
   description: string;
 
   @Column({
-    type: Sequelize.TEXT,
+    type: Sequelize.STRING,
     allowNull: false,
   })
   url: string;

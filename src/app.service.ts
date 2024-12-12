@@ -1,15 +1,13 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, Injectable } from '@nestjs/common';
 import { PlaywrightCrawler } from 'crawlee';
 import { DataAccess } from './dataAccess';
-import { XMLParser } from 'fast-xml-parser';
-import axios from 'axios';
 
 @Injectable()
 export class AppService {
   constructor(private readonly dataAccess: DataAccess) {}
 
-  async getAllContent() {
-    const sitemapUrls = await this.getSitemapUrls();
+  async getAllContent(siteMap: string): Promise<string> {
+    const sitemapUrls = await this.dataAccess.getSitemapUrls(siteMap);
 
     const crawler = new PlaywrightCrawler({
       maxRequestRetries: 3,
@@ -18,25 +16,43 @@ export class AppService {
 
       requestHandler: async ({ page, request }) => {
         try {
-          const classSelector =
-            "//body/div[contains(@class,'container-fluid mb-3')]/div[contains(@class,'row justify-content-center')]/div[contains(@class,'col-md-10 col-12')]/div[contains(@class,'row')]/div[contains(@class,'col-md-9 p-1 text-dark')]/div[contains(@class,'content-cl shadow-lg border rounded')]/div[contains(@class,'')]/div[contains(@class,'p-2')]/div[contains(@class,'col-md-12 content p-1')]/p[1]";
-          await page.waitForSelector(classSelector, { timeout: 10000 });
+          const pageData = await page.evaluate(() => {
+            // Extract text content from specific tags
+            function getTagContent(tagName: string): string[] {
+              return Array.from(document.getElementsByTagName(tagName))
+                .map((element) => element.textContent?.trim())
+                .filter((text) => text) as string[];
+            }
 
-          const contents = await page.$$eval(classSelector, (elements) =>
-            elements.map((el) => el.textContent?.trim() || ''),
-          );
+            // Get all heading tags and paragraphs
+            const headingsAndParagraphs = {
+              h1: getTagContent('h1'),
+              h2: getTagContent('h2'),
+              h3: getTagContent('h3'),
+              h4: getTagContent('h4'),
+              h5: getTagContent('h5'),
+              h6: getTagContent('h6'),
+              p: getTagContent('p'),
+            };
 
-          for (const description of contents) {
-            if (description) {
-              try {
-                const savedContent = await this.dataAccess.createContent(
-                  description,
-                  request.url,
-                );
-                console.log(`Content saved with ID: ${savedContent.id}`);
-              } catch (dbError) {
-                console.error('Error saving to database:', dbError.message);
-              }
+            return {
+              url: decodeURI(window.location.href),
+              title: document.title,
+              content: headingsAndParagraphs,
+              timestamp: new Date().toISOString(),
+            };
+          });
+
+          if (pageData) {
+            try {
+              const pageDataJson = JSON.stringify(pageData);
+              const savedContent = await this.dataAccess.createContent(
+                pageDataJson,
+                request.url,
+              );
+              console.log(`Content saved with ID: ${savedContent.id}`);
+            } catch (dbError) {
+              console.error('Error saving to database:', dbError.message);
             }
           }
         } catch (error) {
@@ -53,30 +69,19 @@ export class AppService {
 
     try {
       await crawler.run(sitemapUrls);
+      return 'Crawl successfully Done';
     } catch (error) {
       console.error('Crawler failed:', error.message);
       throw error;
     }
   }
-
-  private async getSitemapUrls(): Promise<string[]> {
-    try {
-      const response = await axios.get('https://ehghagh.com/sitemap.xml');
-      const parser = new XMLParser();
-      const jsonData = parser.parse(response.data);
-
-      // sitemap urls
-      const urls = jsonData.urlset.url.map((item: any) => item.loc);
-      return urls;
-    } catch (error) {
-      console.error('Error fetching sitemap:', error.message);
-      return [];
-    }
-  }
-
-  async remove(id: string): Promise<void> {
+  async remove(id: string): Promise<string> {
     const content = await this.dataAccess.findOne(id);
+    if (!content) {
+      throw new HttpException('not exist', 404);
+    }
     await content.destroy();
+    return `id: (${id}) Successfully Deleted`;
   }
 
   async findAll() {

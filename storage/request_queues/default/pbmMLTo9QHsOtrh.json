@@ -1,8 +1,8 @@
 {
 	"id": "pbmMLTo9QHsOtrh",
-	"json": "{\"id\":\"pbmMLTo9QHsOtrh\",\"url\":\"https://ehghagh.com/p/سفته-چیست\",\"uniqueKey\":\"https://ehghagh.com/p/%D8%B3%D9%81%D8%AA%D9%87-%DA%86%DB%8C%D8%B3%D8%AA\",\"method\":\"GET\",\"noRetry\":false,\"retryCount\":0,\"errorMessages\":[],\"headers\":{},\"userData\":{}}",
+	"json": "{\"id\":\"pbmMLTo9QHsOtrh\",\"url\":\"https://ehghagh.com/p/سفته-چیست\",\"loadedUrl\":\"https://ehghagh.com/p/%D8%B3%D9%81%D8%AA%D9%87-%DA%86%DB%8C%D8%B3%D8%AA\",\"uniqueKey\":\"https://ehghagh.com/p/%D8%B3%D9%81%D8%AA%D9%87-%DA%86%DB%8C%D8%B3%D8%AA\",\"method\":\"GET\",\"noRetry\":false,\"retryCount\":0,\"errorMessages\":[],\"headers\":{},\"userData\":{\"__crawlee\":{\"state\":4}},\"handledAt\":\"2024-12-12T15:37:18.844Z\"}",
 	"method": "GET",
-	"orderNo": 1733997920433,
+	"orderNo": null,
 	"retryCount": 0,
 	"uniqueKey": "https://ehghagh.com/p/%D8%B3%D9%81%D8%AA%D9%87-%DA%86%DB%8C%D8%B3%D8%AA",
 	"url": "https://ehghagh.com/p/سفته-چیست"

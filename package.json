@@ -26,6 +26,7 @@
     "@nestjs/sequelize": "^10.0.1",
     "@nestjs/swagger": "^8.1.0",
     "axios": "^1.7.9",
+    "class-validator": "^0.14.1",
     "crawlee": "^3.12.1",
     "fast-xml-parser": "^4.5.0",
     "pg": "^8.13.1",
