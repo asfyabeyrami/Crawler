@@ -7,14 +7,17 @@ import { ApiTags, ApiResponse, ApiBearerAuth } from '@nestjs/swagger';
 export class AppController {
   constructor(private readonly appService: AppService) {}
 
-  @Post()
-  @ApiResponse({ status: 200, description: 'Save Content in Database.' })
+  @Post('crawl')
+  @ApiResponse({
+    status: 200,
+    description: 'Save All Content Of sitemap in Database.',
+  })
   create() {
-    return this.appService.getContent();
+    return this.appService.getAllContent();
   }
 
   @Get()
-  findAll(){
+  findAll() {
     return this.appService.findAll();
   }
 
