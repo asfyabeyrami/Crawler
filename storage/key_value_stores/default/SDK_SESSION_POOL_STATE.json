@@ -1,0 +1,107 @@
+{
+  "usableSessionsCount": 2,
+  "retiredSessionsCount": 0,
+  "sessions": [
+    {
+      "id": "session_xK1x0xUGLH",
+      "cookieJar": {
+        "version": "tough-cookie@5.0.0",
+        "storeType": "MemoryCookieStore",
+        "rejectPublicSuffixes": true,
+        "enableLooseMode": false,
+        "allowSpecialUseDomain": true,
+        "prefixSecurity": "silent",
+        "cookies": []
+      },
+      "userData": {},
+      "maxErrorScore": 3,
+      "errorScoreDecrement": 0.5,
+      "expiresAt": "2024-12-11T15:35:20.886Z",
+      "createdAt": "2024-12-11T14:45:20.886Z",
+      "usageCount": 0,
+      "maxUsageCount": 50,
+      "errorScore": 0
+    },
+    {
+      "id": "session_b2ftSUKWeX",
+      "cookieJar": {
+        "version": "tough-cookie@5.0.0",
+        "storeType": "MemoryCookieStore",
+        "rejectPublicSuffixes": true,
+        "enableLooseMode": false,
+        "allowSpecialUseDomain": true,
+        "prefixSecurity": "silent",
+        "cookies": [
+          {
+            "key": "_gid",
+            "value": "GA1.2.498963780.1733928323",
+            "expires": "2024-12-12T14:45:22.000Z",
+            "domain": "ehghagh.com",
+            "path": "/",
+            "hostOnly": false,
+            "creation": "2024-12-11T14:45:24.039Z",
+            "lastAccessed": "2024-12-11T14:45:24.039Z"
+          },
+          {
+            "key": "_gat_gtag_UA_139841887_1",
+            "value": "1",
+            "expires": "2024-12-11T14:46:22.000Z",
+            "domain": "ehghagh.com",
+            "path": "/",
+            "hostOnly": false,
+            "creation": "2024-12-11T14:45:24.039Z",
+            "lastAccessed": "2024-12-11T14:45:24.039Z"
+          },
+          {
+            "key": "_clck",
+            "value": "1cb60x5%7C2%7Cfrm%7C0%7C1806",
+            "expires": "2025-12-11T14:45:22.000Z",
+            "domain": "ehghagh.com",
+            "path": "/",
+            "hostOnly": false,
+            "creation": "2024-12-11T14:45:24.039Z",
+            "lastAccessed": "2024-12-11T14:45:24.039Z"
+          },
+          {
+            "key": "_ga_MYDQK4C2JR",
+            "value": "GS1.1.1733928323.1.0.1733928323.60.0.0",
+            "expires": "2026-01-15T14:45:23.134Z",
+            "domain": "ehghagh.com",
+            "path": "/",
+            "hostOnly": false,
+            "creation": "2024-12-11T14:45:24.039Z",
+            "lastAccessed": "2024-12-11T14:45:24.039Z"
+          },
+          {
+            "key": "_ga",
+            "value": "GA1.1.578007427.1733928322",
+            "expires": "2026-01-15T14:45:23.134Z",
+            "domain": "ehghagh.com",
+            "path": "/",
+            "hostOnly": false,
+            "creation": "2024-12-11T14:45:24.039Z",
+            "lastAccessed": "2024-12-11T14:45:24.039Z"
+          },
+          {
+            "key": "_clsk",
+            "value": "1pfyeow%7C1733928323761%7C1%7C1%7Ce.clarity.ms%2Fcollect",
+            "expires": "2024-12-12T14:45:23.000Z",
+            "domain": "ehghagh.com",
+            "path": "/",
+            "hostOnly": false,
+            "creation": "2024-12-11T14:45:24.039Z",
+            "lastAccessed": "2024-12-11T14:45:24.039Z"
+          }
+        ]
+      },
+      "userData": {},
+      "maxErrorScore": 3,
+      "errorScoreDecrement": 0.5,
+      "expiresAt": "2024-12-11T15:35:20.889Z",
+      "createdAt": "2024-12-11T14:45:20.889Z",
+      "usageCount": 2,
+      "maxUsageCount": 50,
+      "errorScore": 0
+    }
+  ]
+}
