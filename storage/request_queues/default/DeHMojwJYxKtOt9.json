@@ -1,8 +1,8 @@
 {
 	"id": "DeHMojwJYxKtOt9",
-	"json": "{\"id\":\"DeHMojwJYxKtOt9\",\"url\":\"https://ehghagh.com/p/خسارت-تصادفات\",\"uniqueKey\":\"https://ehghagh.com/p/%D8%AE%D8%B3%D8%A7%D8%B1%D8%AA-%D8%AA%D8%B5%D8%A7%D8%AF%D9%81%D8%A7%D8%AA\",\"method\":\"GET\",\"noRetry\":false,\"retryCount\":0,\"errorMessages\":[],\"headers\":{},\"userData\":{}}",
+	"json": "{\"id\":\"DeHMojwJYxKtOt9\",\"url\":\"https://ehghagh.com/p/خسارت-تصادفات\",\"loadedUrl\":\"https://ehghagh.com/p/%D8%AE%D8%B3%D8%A7%D8%B1%D8%AA-%D8%AA%D8%B5%D8%A7%D8%AF%D9%81%D8%A7%D8%AA\",\"uniqueKey\":\"https://ehghagh.com/p/%D8%AE%D8%B3%D8%A7%D8%B1%D8%AA-%D8%AA%D8%B5%D8%A7%D8%AF%D9%81%D8%A7%D8%AA\",\"method\":\"GET\",\"noRetry\":false,\"retryCount\":0,\"errorMessages\":[],\"headers\":{},\"userData\":{\"__crawlee\":{\"state\":4}},\"handledAt\":\"2024-12-14T15:32:55.080Z\"}",
 	"method": "GET",
-	"orderNo": 1734018184866,
+	"orderNo": null,
 	"retryCount": 0,
 	"uniqueKey": "https://ehghagh.com/p/%D8%AE%D8%B3%D8%A7%D8%B1%D8%AA-%D8%AA%D8%B5%D8%A7%D8%AF%D9%81%D8%A7%D8%AA",
 	"url": "https://ehghagh.com/p/خسارت-تصادفات"

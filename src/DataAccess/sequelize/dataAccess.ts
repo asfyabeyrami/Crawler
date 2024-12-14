@@ -1,8 +1,7 @@
 import { Injectable } from '@nestjs/common';
-import * as Models from '../src/crawler.model';
+import * as Models from './crawler.model';
 import { XMLParser } from 'fast-xml-parser';
 import axios from 'axios';
-import { ApiBody, ApiProperty } from '@nestjs/swagger';
 
 @Injectable()
 export class DataAccess {

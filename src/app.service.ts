@@ -1,10 +1,11 @@
-import { HttpException, Injectable } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { PlaywrightCrawler } from 'crawlee';
-import { DataAccess } from './dataAccess';
+import { MongoDataAccess } from './DataAccess/mongoose/mongo-dataAccess';
+// import { DataAccess } from './dataAccess';
 
 @Injectable()
 export class AppService {
-  constructor(private readonly dataAccess: DataAccess) {}
+  constructor(private readonly dataAccess: MongoDataAccess) {}
 
   async getAllContent(siteMap: string): Promise<string> {
     const sitemapUrls = await this.dataAccess.getSitemapUrls(siteMap);
@@ -50,7 +51,7 @@ export class AppService {
                 pageDataJson,
                 request.url,
               );
-              console.log(`Content saved with ID: ${savedContent.id}`);
+              console.log("Content saved");
             } catch (dbError) {
               console.error('Error saving to database:', dbError.message);
             }
@@ -75,13 +76,8 @@ export class AppService {
       throw error;
     }
   }
-  async remove(id: string): Promise<string> {
-    const content = await this.dataAccess.findOne(id);
-    if (!content) {
-      throw new HttpException('not exist', 404);
-    }
-    await content.destroy();
-    return `id: (${id}) Successfully Deleted`;
+  async delete(id: string): Promise<string> {
+    return await this.dataAccess.delete(id);
   }
 
   async findAll() {

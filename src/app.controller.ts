@@ -1,7 +1,7 @@
 import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
 import { AppService } from './app.service';
 import { ApiTags, ApiResponse, ApiBearerAuth } from '@nestjs/swagger';
-import { siteMapDto } from './url.dto';
+import { siteMapDto } from './DTO/url.dto';
 
 @ApiTags('Crawler')
 @Controller()
@@ -25,6 +25,6 @@ export class AppController {
 
   @Delete(':id')
   async remove(@Param('id') id: string): Promise<string> {
-    return await this.appService.remove(id);
+    return await this.appService.delete(id);
   }
 }

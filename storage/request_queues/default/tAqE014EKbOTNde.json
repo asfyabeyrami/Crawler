@@ -1,8 +1,8 @@
 {
 	"id": "tAqE014EKbOTNde",
-	"json": "{\"id\":\"tAqE014EKbOTNde\",\"url\":\"https://ehghagh.com/p/مجازات-تکمیلی\",\"uniqueKey\":\"https://ehghagh.com/p/%D9%85%D8%AC%D8%A7%D8%B2%D8%A7%D8%AA-%D8%AA%DA%A9%D9%85%DB%8C%D9%84%DB%8C\",\"method\":\"GET\",\"noRetry\":false,\"retryCount\":0,\"errorMessages\":[],\"headers\":{},\"userData\":{}}",
+	"json": "{\"id\":\"tAqE014EKbOTNde\",\"url\":\"https://ehghagh.com/p/مجازات-تکمیلی\",\"loadedUrl\":\"https://ehghagh.com/p/%D9%85%D8%AC%D8%A7%D8%B2%D8%A7%D8%AA-%D8%AA%DA%A9%D9%85%DB%8C%D9%84%DB%8C\",\"uniqueKey\":\"https://ehghagh.com/p/%D9%85%D8%AC%D8%A7%D8%B2%D8%A7%D8%AA-%D8%AA%DA%A9%D9%85%DB%8C%D9%84%DB%8C\",\"method\":\"GET\",\"noRetry\":false,\"retryCount\":0,\"errorMessages\":[],\"headers\":{},\"userData\":{\"__crawlee\":{\"state\":4}},\"handledAt\":\"2024-12-14T15:33:28.202Z\"}",
 	"method": "GET",
-	"orderNo": 1734017791921,
+	"orderNo": null,
 	"retryCount": 0,
 	"uniqueKey": "https://ehghagh.com/p/%D9%85%D8%AC%D8%A7%D8%B2%D8%A7%D8%AA-%D8%AA%DA%A9%D9%85%DB%8C%D9%84%DB%8C",
 	"url": "https://ehghagh.com/p/مجازات-تکمیلی"

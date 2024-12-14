@@ -1,9 +1,9 @@
 {
 	"id": "eg1JzcMaQc7GQre",
-	"json": "{\"id\":\"eg1JzcMaQc7GQre\",\"url\":\"https://ehghagh.com/how\",\"uniqueKey\":\"https://ehghagh.com/how\",\"method\":\"GET\",\"noRetry\":false,\"retryCount\":1,\"errorMessages\":[\"Error: Navigation timed out after 30 seconds.\\n    at handleRequestTimeout (C:\\\\Users\\\\asfya\\\\Desktop\\\\play\\\\play\\\\node_modules\\\\@crawlee\\\\src\\\\crawlers\\\\crawler_utils.ts:13:11)\\n    at PlaywrightCrawler._handleNavigationTimeout (C:\\\\Users\\\\asfya\\\\Desktop\\\\play\\\\play\\\\node_modules\\\\@crawlee\\\\src\\\\internals\\\\browser-crawler.ts:687:33)\\n    at PlaywrightCrawler._handleNavigation (C:\\\\Users\\\\asfya\\\\Desktop\\\\play\\\\play\\\\node_modules\\\\@crawlee\\\\src\\\\internals\\\\browser-crawler.ts:650:24)\\n    at PlaywrightCrawler._runRequestHandler (C:\\\\Users\\\\asfya\\\\Desktop\\\\play\\\\play\\\\node_modules\\\\@crawlee\\\\src\\\\internals\\\\browser-crawler.ts:549:13)\\n    at PlaywrightCrawler._runRequestHandler (C:\\\\Users\\\\asfya\\\\Desktop\\\\play\\\\play\\\\node_modules\\\\@crawlee\\\\src\\\\internals\\\\playwright-crawler.ts:243:9)\\n    at wrap (C:\\\\Users\\\\asfya\\\\Desktop\\\\play\\\\play\\\\node_modules\\\\@apify\\\\src\\\\index.ts:77:27)\"],\"headers\":{},\"userData\":{\"__crawlee\":{\"state\":5}}}",
+	"json": "{\"id\":\"eg1JzcMaQc7GQre\",\"url\":\"https://ehghagh.com/how\",\"loadedUrl\":\"https://ehghagh.com/how\",\"uniqueKey\":\"https://ehghagh.com/how\",\"method\":\"GET\",\"noRetry\":false,\"retryCount\":0,\"errorMessages\":[],\"headers\":{},\"userData\":{\"__crawlee\":{\"state\":4}},\"handledAt\":\"2024-12-14T15:32:15.193Z\"}",
 	"method": "GET",
-	"orderNo": 1734018204581,
-	"retryCount": 1,
+	"orderNo": null,
+	"retryCount": 0,
 	"uniqueKey": "https://ehghagh.com/how",
 	"url": "https://ehghagh.com/how"
 }
