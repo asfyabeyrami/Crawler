@@ -1,12 +1,15 @@
 import { Injectable } from '@nestjs/common';
 import { PlaywrightCrawler } from 'crawlee';
-import { DataAccess } from './dataAccess';
+import { MongoDataAccess } from './DataAccess/mongoose/mongo-dataAccess';
+// import { DataAccess } from './dataAccess';
 
 @Injectable()
 export class AppService {
-  constructor(private readonly dataAccess: DataAccess) {}
+  constructor(private readonly dataAccess: MongoDataAccess) {}
 
-  async getContent() {
+  async getAllContent(siteMap: string): Promise<string> {
+    const sitemapUrls = await this.dataAccess.getSitemapUrls(siteMap);
+
     const crawler = new PlaywrightCrawler({
       maxRequestRetries: 3,
       navigationTimeoutSecs: 30,
@@ -14,26 +17,43 @@ export class AppService {
 
       requestHandler: async ({ page, request }) => {
         try {
-          const classSelector = '.content';
-          await page.waitForSelector(classSelector, { timeout: 10000 });
+          const pageData = await page.evaluate(() => {
+            // Extract text content from specific tags
+            function getTagContent(tagName: string): string[] {
+              return Array.from(document.getElementsByTagName(tagName))
+                .map((element) => element.textContent?.trim())
+                .filter((text) => text) as string[];
+            }
 
-          // گرفتن متن محتوا
-          const contents = await page.$$eval(classSelector, (elements) =>
-            elements.map((el) => el.textContent?.trim() || ''),
-          );
+            // Get all heading tags and paragraphs
+            const headingsAndParagraphs = {
+              h1: getTagContent('h1'),
+              h2: getTagContent('h2'),
+              h3: getTagContent('h3'),
+              h4: getTagContent('h4'),
+              h5: getTagContent('h5'),
+              h6: getTagContent('h6'),
+              p: getTagContent('p'),
+            };
 
-          // ذخیره در دیتابیس
-          for (const description of contents) {
-            if (description) {
-              try {
-                const savedContent = await this.dataAccess.createContent(
-                  description,
-                  request.url,
-                );
-                console.log(`Content saved with ID: ${savedContent.id}`);
-              } catch (dbError) {
-                console.error('Error saving to database:', dbError.message);
-              }
+            return {
+              url: decodeURI(window.location.href),
+              title: document.title,
+              content: headingsAndParagraphs,
+              timestamp: new Date().toISOString(),
+            };
+          });
+
+          if (pageData) {
+            try {
+              const pageDataJson = JSON.stringify(pageData);
+              const savedContent = await this.dataAccess.createContent(
+                pageDataJson,
+                request.url,
+              );
+              console.log("Content saved");
+            } catch (dbError) {
+              console.error('Error saving to database:', dbError.message);
             }
           }
         } catch (error) {
@@ -49,21 +69,18 @@ export class AppService {
     });
 
     try {
-      await crawler.run([
-        'https://ehghagh.com/مهدیس-گودرزی/همه-چیز-در-رابطه-با-جرم-افترا-تهمت-زدن-بخش-هشتم',
-      ]);
+      await crawler.run(sitemapUrls);
+      return 'Crawl successfully Done';
     } catch (error) {
       console.error('Crawler failed:', error.message);
       throw error;
     }
   }
-
-  async remove(id: string): Promise<void> {
-    const content = await this.dataAccess.findOne(id);
-    await content.destroy();
+  async delete(id: string): Promise<string> {
+    return await this.dataAccess.delete(id);
   }
 
-  async findAll(){
+  async findAll() {
     return this.dataAccess.findAll();
   }
 }

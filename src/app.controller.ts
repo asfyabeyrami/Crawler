@@ -1,25 +1,30 @@
-import { Controller, Delete, Get, Param, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
 import { AppService } from './app.service';
 import { ApiTags, ApiResponse, ApiBearerAuth } from '@nestjs/swagger';
+import { siteMapDto } from './DTO/url.dto';
 
 @ApiTags('Crawler')
 @Controller()
 export class AppController {
   constructor(private readonly appService: AppService) {}
 
-  @Post()
-  @ApiResponse({ status: 200, description: 'Save Content in Database.' })
-  create() {
-    return this.appService.getContent();
+  @Post('crawl')
+  @ApiResponse({
+    status: 200,
+    description: 'Save All Content Of sitemap in Database.',
+  })
+  async create(@Body() siteMapDto: siteMapDto): Promise<string> {
+    const { siteMap } = siteMapDto;
+    return await this.appService.getAllContent(siteMap);
   }
 
   @Get()
-  findAll(){
-    return this.appService.findAll();
+  async findAll() {
+    return await this.appService.findAll();
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string): Promise<void> {
-    return this.appService.remove(id);
+  async remove(@Param('id') id: string): Promise<string> {
+    return await this.appService.delete(id);
   }
 }
