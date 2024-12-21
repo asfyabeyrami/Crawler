@@ -24,30 +24,42 @@ export class AppService {
           await page.waitForTimeout(5000);
 
           const pageData = await page.evaluate(() => {
-            // Extract text content from specific tags
+            // تابع بهبود یافته برای استخراج محتوا
             function getTagContent(tagName: string): string[] {
-              return Array.from(document.getElementsByTagName(tagName))
-                .map((element) => element.textContent?.trim())
-                .filter((text) => text) as string[];
+              const elements = document.getElementsByTagName(tagName);
+              const contents: string[] = [];
+
+              for (const element of elements) {
+                // حذف فضاهای خالی اضافی و نیولاین‌ها
+                const text = element.textContent?.replace(/\s+/g, ' ').trim();
+
+                if (text && text.length > 0) {
+                  contents.push(text);
+                }
+              }
+
+              return contents;
             }
 
-            // Get all heading tags and paragraphs
-            const headingsAndParagraphs = {
-              h1: getTagContent('h1'),
-              h2: getTagContent('h2'),
-              h3: getTagContent('h3'),
-              h4: getTagContent('h4'),
-              h5: getTagContent('h5'),
-              h6: getTagContent('h6'),
-              p: getTagContent('p'),
-              strong: getTagContent('strong'),
-              b: getTagContent('b'),
-            };
+            // روش جایگزین برای گرفتن پاراگراف‌ها
+            const paragraphs = Array.from(document.querySelectorAll('p'))
+              .map((p) => p.innerText.trim())
+              .filter((text) => text.length > 0);
 
             return {
               url: decodeURI(window.location.href),
               title: document.title,
-              content: headingsAndParagraphs,
+              content: {
+                h1: getTagContent('h1'),
+                h2: getTagContent('h2'),
+                h3: getTagContent('h3'),
+                h4: getTagContent('h4'),
+                h5: getTagContent('h5'),
+                h6: getTagContent('h6'),
+                p: paragraphs,
+                strong: getTagContent('strong'),
+                b: getTagContent('b'),
+              },
               timestamp: new Date().toISOString(),
             };
           });

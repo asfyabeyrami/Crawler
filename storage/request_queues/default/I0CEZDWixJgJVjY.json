@@ -1,9 +1,9 @@
 {
 	"id": "I0CEZDWixJgJVjY",
-	"json": "{\"id\":\"I0CEZDWixJgJVjY\",\"url\":\"https://qavanin.ir/Law/TreeText/?IDS=2789921527016850083\",\"uniqueKey\":\"https://qavanin.ir/Law/TreeText?IDS=2789921527016850083\",\"method\":\"GET\",\"noRetry\":false,\"retryCount\":1,\"errorMessages\":[\"page.goto: net::ERR_ABORTED; maybe frame was detached?\\nCall log:\\n\\u001b[2m  - navigating to \\\"https://qavanin.ir/Law/TreeText/?IDS=2789921527016850083\\\", waiting until \\\"load\\\"\\u001b[22m\\n\\n    at gotoExtended (D:\\\\back-end\\\\play\\\\Crawler\\\\node_modules\\\\@crawlee\\\\src\\\\internals\\\\utils\\\\playwright-utils.ts:231:17)\\n    at PlaywrightCrawler._navigationHandler (D:\\\\back-end\\\\play\\\\Crawler\\\\node_modules\\\\@crawlee\\\\src\\\\internals\\\\playwright-crawler.ts:250:28)\\n    at PlaywrightCrawler._handleNavigation (D:\\\\back-end\\\\play\\\\Crawler\\\\node_modules\\\\@crawlee\\\\src\\\\internals\\\\browser-crawler.ts:648:52)\\n    at async PlaywrightCrawler._runRequestHandler (D:\\\\back-end\\\\play\\\\Crawler\\\\node_modules\\\\@crawlee\\\\src\\\\internals\\\\browser-crawler.ts:549:13)\\n    at async PlaywrightCrawler._runRequestHandler (D:\\\\back-end\\\\play\\\\Crawler\\\\node_modules\\\\@crawlee\\\\src\\\\internals\\\\playwright-crawler.ts:243:9)\\n    at async wrap (D:\\\\back-end\\\\play\\\\Crawler\\\\node_modules\\\\@apify\\\\src\\\\index.ts:77:27)\"],\"headers\":{},\"userData\":{\"__crawlee\":{\"state\":5}}}",
+	"json": "{\"id\":\"I0CEZDWixJgJVjY\",\"url\":\"https://qavanin.ir/Law/TreeText/?IDS=2789921527016850083\",\"loadedUrl\":\"https://qavanin.ir/Law/TreeText/?IDS=2789921527016850083\",\"uniqueKey\":\"https://qavanin.ir/Law/TreeText?IDS=2789921527016850083\",\"method\":\"GET\",\"noRetry\":false,\"retryCount\":0,\"errorMessages\":[],\"headers\":{},\"userData\":{\"__crawlee\":{\"state\":4}},\"handledAt\":\"2024-12-21T13:10:39.227Z\"}",
 	"method": "GET",
-	"orderNo": 1734782348574,
-	"retryCount": 1,
+	"orderNo": null,
+	"retryCount": 0,
 	"uniqueKey": "https://qavanin.ir/Law/TreeText?IDS=2789921527016850083",
 	"url": "https://qavanin.ir/Law/TreeText/?IDS=2789921527016850083"
 }

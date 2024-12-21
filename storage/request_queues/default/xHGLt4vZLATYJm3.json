@@ -1,8 +1,8 @@
 {
 	"id": "xHGLt4vZLATYJm3",
-	"json": "{\"id\":\"xHGLt4vZLATYJm3\",\"url\":\"https://qavanin.ir/Law/TreeText/?IDS=12117825924582732506\",\"uniqueKey\":\"https://qavanin.ir/Law/TreeText?IDS=12117825924582732506\",\"method\":\"GET\",\"noRetry\":false,\"retryCount\":0,\"errorMessages\":[],\"headers\":{},\"userData\":{}}",
+	"json": "{\"id\":\"xHGLt4vZLATYJm3\",\"url\":\"https://qavanin.ir/Law/TreeText/?IDS=12117825924582732506\",\"loadedUrl\":\"https://qavanin.ir/Law/TreeText/?IDS=12117825924582732506\",\"uniqueKey\":\"https://qavanin.ir/Law/TreeText?IDS=12117825924582732506\",\"method\":\"GET\",\"noRetry\":false,\"retryCount\":0,\"errorMessages\":[],\"headers\":{},\"userData\":{\"__crawlee\":{\"state\":4}},\"handledAt\":\"2024-12-21T13:15:14.402Z\"}",
 	"method": "GET",
-	"orderNo": 1734782193512,
+	"orderNo": null,
 	"retryCount": 0,
 	"uniqueKey": "https://qavanin.ir/Law/TreeText?IDS=12117825924582732506",
 	"url": "https://qavanin.ir/Law/TreeText/?IDS=12117825924582732506"
