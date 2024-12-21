@@ -1,0 +1,9 @@
+{
+	"id": "cd8OF90E09IfgYj",
+	"json": "{\"id\":\"cd8OF90E09IfgYj\",\"url\":\"https://qavanin.ir/Law/TreeText/?IDS=15033857210330247740\",\"uniqueKey\":\"https://qavanin.ir/Law/TreeText?IDS=15033857210330247740\",\"method\":\"GET\",\"noRetry\":false,\"retryCount\":1,\"errorMessages\":[\"page.goto: net::ERR_ABORTED; maybe frame was detached?\\nCall log:\\n\\u001b[2m  - navigating to \\\"https://qavanin.ir/Law/TreeText/?IDS=15033857210330247740\\\", waiting until \\\"load\\\"\\u001b[22m\\n\\n    at gotoExtended (D:\\\\back-end\\\\play\\\\Crawler\\\\node_modules\\\\@crawlee\\\\src\\\\internals\\\\utils\\\\playwright-utils.ts:231:17)\\n    at PlaywrightCrawler._navigationHandler (D:\\\\back-end\\\\play\\\\Crawler\\\\node_modules\\\\@crawlee\\\\src\\\\internals\\\\playwright-crawler.ts:250:28)\\n    at PlaywrightCrawler._handleNavigation (D:\\\\back-end\\\\play\\\\Crawler\\\\node_modules\\\\@crawlee\\\\src\\\\internals\\\\browser-crawler.ts:648:52)\\n    at async PlaywrightCrawler._runRequestHandler (D:\\\\back-end\\\\play\\\\Crawler\\\\node_modules\\\\@crawlee\\\\src\\\\internals\\\\browser-crawler.ts:549:13)\\n    at async PlaywrightCrawler._runRequestHandler (D:\\\\back-end\\\\play\\\\Crawler\\\\node_modules\\\\@crawlee\\\\src\\\\internals\\\\playwright-crawler.ts:243:9)\\n    at async wrap (D:\\\\back-end\\\\play\\\\Crawler\\\\node_modules\\\\@apify\\\\src\\\\index.ts:77:27)\"],\"headers\":{},\"userData\":{\"__crawlee\":{\"state\":5}}}",
+	"method": "GET",
+	"orderNo": 1734782348565,
+	"retryCount": 1,
+	"uniqueKey": "https://qavanin.ir/Law/TreeText?IDS=15033857210330247740",
+	"url": "https://qavanin.ir/Law/TreeText/?IDS=15033857210330247740"
+}

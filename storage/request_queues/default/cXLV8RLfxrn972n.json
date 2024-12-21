@@ -1,0 +1,9 @@
+{
+	"id": "cXLV8RLfxrn972n",
+	"json": "{\"id\":\"cXLV8RLfxrn972n\",\"url\":\"https://qavanin.ir/Law/TreeText/?IDS=14337979606803960538\",\"uniqueKey\":\"https://qavanin.ir/Law/TreeText?IDS=14337979606803960538\",\"method\":\"GET\",\"noRetry\":false,\"retryCount\":1,\"errorMessages\":[\"Error: browserController.newPage() failed: eqJtrMfe3DQib7djJBAvJ\\nCause:browserContext.newPage: Protocol error (Target.createTarget): Failed to open a new tab.\\n    at BrowserPool._createPageForBrowser (D:\\\\back-end\\\\play\\\\Crawler\\\\node_modules\\\\@crawlee\\\\src\\\\browser-pool.ts:593:19)\\n    at runNextTicks (node:internal/process/task_queues:65:5)\\n    at process.processImmediate (node:internal/timers:459:9)\\n    at process.callbackTrampoline (node:internal/async_hooks:130:17)\"],\"headers\":{},\"userData\":{\"__crawlee\":{\"state\":5}}}",
+	"method": "GET",
+	"orderNo": 1734782348506,
+	"retryCount": 1,
+	"uniqueKey": "https://qavanin.ir/Law/TreeText?IDS=14337979606803960538",
+	"url": "https://qavanin.ir/Law/TreeText/?IDS=14337979606803960538"
+}

@@ -18,6 +18,16 @@ export class AppController {
     return await this.appService.getAllContent(siteMap);
   }
 
+  @Post('links')
+  @ApiResponse({
+    status: 200,
+    description: 'get all link.',
+  })
+  async createLink(@Body() siteMapDto: siteMapDto) {
+    const { siteMap } = siteMapDto;
+    return await this.appService.getUrl(siteMap);
+  }
+
   @Get()
   async findAll() {
     return await this.appService.findAll();

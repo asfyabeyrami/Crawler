@@ -1,0 +1,9 @@
+{
+	"id": "k8IoEEB8VrUaBSy",
+	"json": "{\"id\":\"k8IoEEB8VrUaBSy\",\"url\":\"https://qavanin.ir/?sortOrder=ApproveDate_inc\",\"loadedUrl\":\"https://qavanin.ir/?sortOrder=ApproveDate_inc\",\"uniqueKey\":\"https://qavanin.ir?sortOrder=ApproveDate_inc\",\"method\":\"GET\",\"noRetry\":false,\"retryCount\":0,\"errorMessages\":[],\"headers\":{},\"userData\":{\"__crawlee\":{\"state\":4}},\"handledAt\":\"2024-12-21T11:57:28.469Z\"}",
+	"method": "GET",
+	"orderNo": null,
+	"retryCount": 0,
+	"uniqueKey": "https://qavanin.ir?sortOrder=ApproveDate_inc",
+	"url": "https://qavanin.ir/?sortOrder=ApproveDate_inc"
+}

@@ -7,12 +7,15 @@ import { AppService } from './app.service';
 import { LoggerMiddleware } from './middleware/logger.middleware';
 import { MongooseModule } from '@nestjs/mongoose';
 import { MongoDataAccess } from './DataAccess/mongoose/mongo-dataAccess';
-import { content, contentSchema } from './DataAccess/mongoose/schema/crawler.schema';
+import {
+  content,
+  contentSchema,
+} from './DataAccess/mongoose/schema/crawler.schema';
 
 @Module({
   imports: [
     MongooseModule.forFeature([{ name: content.name, schema: contentSchema }]),
-    MongooseModule.forRoot('mongodb://localhost:27017/crawler'),
+    MongooseModule.forRoot('mongodb://127.0.0.1:27017/crawler'),
     // SequelizeModule.forFeature([content]),
     // SequelizeModule.forRoot({
     //   dialect: 'postgres',
