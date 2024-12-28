@@ -1,5 +1,10 @@
 import { Injectable } from '@nestjs/common';
-import { PlaywrightCrawler } from 'crawlee';
+import {
+  Dictionary,
+  PlaywrightCrawler,
+  Request,
+  RequestOptions,
+} from 'crawlee';
 import { MongoDataAccess } from './DataAccess/mongoose/mongo-dataAccess';
 // import { DataAccess } from './dataAccess';
 
@@ -7,9 +12,97 @@ import { MongoDataAccess } from './DataAccess/mongoose/mongo-dataAccess';
 export class AppService {
   constructor(private readonly dataAccess: MongoDataAccess) {}
 
-  async getAllContent(siteMap: string): Promise<string> {
-    const sitemapUrls = await this.dataAccess.getQavaninLinks(siteMap);
-    // const sitemapUrls = await this.dataAccess.getSitemapUrls(siteMap);
+  async getContentPage(page: string): Promise<string> {
+    const crawler = new PlaywrightCrawler({
+      maxRequestRetries: 5,
+      navigationTimeoutSecs: 120,
+      requestHandlerTimeoutSecs: 180,
+
+      requestHandler: async ({ page, request }) => {
+        try {
+          await page.setViewportSize({ width: 1920, height: 1080 });
+          await page.waitForLoadState('networkidle', { timeout: 60000 });
+          await page.waitForTimeout(5000);
+
+          const pageData = await page.evaluate(() => {
+            function getTagContent(tagName: string): string[] {
+              const elements = document.getElementsByTagName(tagName);
+              const contents: string[] = [];
+
+              for (const element of elements) {
+                const text = element.textContent?.replace(/\s+/g, ' ').trim();
+                if (text && text.length > 0) {
+                  contents.push(text);
+                }
+              }
+              return contents;
+            }
+
+            const paragraphs = Array.from(document.querySelectorAll('p'))
+              .map((p) => p.innerText.trim())
+              .filter((text) => text.length > 0);
+
+            return {
+              url: decodeURI(window.location.href),
+              title: document.title,
+              content: {
+                h1: getTagContent('h1'),
+                h2: getTagContent('h2'),
+                h3: getTagContent('h3'),
+                h4: getTagContent('h4'),
+                h5: getTagContent('h5'),
+                h6: getTagContent('h6'),
+                p: paragraphs,
+                strong: getTagContent('strong'),
+                b: getTagContent('b'),
+              },
+              timestamp: new Date().toISOString(),
+            };
+          });
+
+          if (pageData) {
+            try {
+              const pageDataJson = JSON.stringify(pageData);
+              await this.dataAccess.createContent(pageDataJson, request.url);
+              console.log('Content saved for:', request.url);
+            } catch (dbError) {
+              console.error('Error saving to database:', dbError.message);
+            }
+          }
+        } catch (error) {
+          console.error(`Error processing ${request.url}: ${error.message}`);
+        }
+      },
+
+      launchContext: {
+        launchOptions: {
+          headless: false,
+          args: [
+            '--lang=fa',
+            '--disable-web-security',
+            '--disable-features=IsolateOrigins,site-per-process',
+            '--no-sandbox',
+            '--disable-setuid-sandbox',
+            '--window-size=1920,1080',
+          ],
+          slowMo: 100,
+        },
+      },
+    });
+
+    try {
+      console.log(`Starting to crawl single page: ${page}`);
+      await crawler.run([page]);
+      return 'Single page crawl successfully completed';
+    } catch (error) {
+      console.error('Crawler failed:', error.message);
+      throw error;
+    }
+  }
+
+  async getAllContent(siteMap?: string, url?: string): Promise<string> {
+    const pageUrls = await this.dataAccess.getQavaninLinks(url);
+    const sitemapUrls = await this.dataAccess.getSitemapUrls(siteMap);
 
     const crawler = new PlaywrightCrawler({
       maxRequestRetries: 5,
@@ -96,7 +189,14 @@ export class AppService {
 
     try {
       console.log(`Starting to crawl ${sitemapUrls.length} URLs...`);
-      await crawler.run(sitemapUrls);
+      if (sitemapUrls) {
+        console.log(`Starting to crawl ${sitemapUrls.length} URLs...`);
+        await crawler.run(sitemapUrls);
+      }
+      if (pageUrls) {
+        console.log(`Starting to crawl ${pageUrls.length} URLs...`);
+        await crawler.run(pageUrls);
+      }
       return 'Crawl successfully Done';
     } catch (error) {
       console.error('Crawler failed:', error.message);
@@ -111,9 +211,13 @@ export class AppService {
     return this.dataAccess.findAll();
   }
 
-  async getUrl(siteMap: string) {
+  async findAllUrl() {
+    return this.dataAccess.findAllUrl();
+  }
+
+  async getUrl(url: string) {
     console.log('Starting URL fetch process...');
-    const links = await this.dataAccess.getQavaninLinks(siteMap);
+    const links = await this.dataAccess.getQavaninLinks(url);
     console.log(`Total links found: ${links.length}`);
     return links;
   }

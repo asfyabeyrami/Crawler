@@ -1,0 +1,9 @@
+{
+	"id": "GaCvaEgOZn9fY1Z",
+	"json": "{\"id\":\"GaCvaEgOZn9fY1Z\",\"url\":\"https://ehghagh.com/?size=1000\",\"loadedUrl\":\"https://ehghagh.com/?size=1000\",\"uniqueKey\":\"https://ehghagh.com?size=1000\",\"method\":\"GET\",\"noRetry\":false,\"retryCount\":2,\"errorMessages\":[\"page.screenshot: Target page, context or browser has been closed\\n    at PlaywrightCrawler.requestHandler (D:\\\\back-end\\\\play\\\\Crawler\\\\src\\\\DataAccess\\\\mongoose\\\\mongo-dataAccess.ts:153:22)\\n    at async wrap (D:\\\\back-end\\\\play\\\\Crawler\\\\node_modules\\\\@apify\\\\src\\\\index.ts:77:27)\",\"Error: browserController.newPage() failed: -Mdesm3MJj_YvswKJnst2\\nCause:browserContext.newPage: Target page, context or browser has been closed.\\n    at BrowserPool._createPageForBrowser (D:\\\\back-end\\\\play\\\\Crawler\\\\node_modules\\\\@crawlee\\\\src\\\\browser-pool.ts:593:19)\"],\"headers\":{},\"userData\":{\"__crawlee\":{\"state\":4}},\"handledAt\":\"2024-12-28T11:32:06.753Z\"}",
+	"method": "GET",
+	"orderNo": null,
+	"retryCount": 2,
+	"uniqueKey": "https://ehghagh.com?size=1000",
+	"url": "https://ehghagh.com/?size=1000"
+}

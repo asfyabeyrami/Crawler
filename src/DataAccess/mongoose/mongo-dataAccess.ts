@@ -202,4 +202,9 @@ export class MongoDataAccess {
       return [];
     }
   }
+
+  async findAllUrl() {
+    const urls = await this.contentModel.find({}, { url: 1, _id: 0 });
+    return urls;
+  }
 }

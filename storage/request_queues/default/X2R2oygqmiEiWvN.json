@@ -1,9 +1,0 @@
-{
-	"id": "X2R2oygqmiEiWvN",
-	"json": "{\"id\":\"X2R2oygqmiEiWvN\",\"url\":\"https://qavanin.ir/Report/BookView/191\",\"loadedUrl\":\"https://qavanin.ir/Report/BookView/191\",\"uniqueKey\":\"https://qavanin.ir/Report/BookView/191\",\"method\":\"GET\",\"noRetry\":false,\"retryCount\":0,\"errorMessages\":[],\"headers\":{},\"userData\":{\"__crawlee\":{\"state\":4}},\"handledAt\":\"2024-12-21T13:08:49.141Z\"}",
-	"method": "GET",
-	"orderNo": null,
-	"retryCount": 0,
-	"uniqueKey": "https://qavanin.ir/Report/BookView/191",
-	"url": "https://qavanin.ir/Report/BookView/191"
-}

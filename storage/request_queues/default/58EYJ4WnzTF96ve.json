@@ -1,0 +1,9 @@
+{
+	"id": "58EYJ4WnzTF96ve",
+	"json": "{\"id\":\"58EYJ4WnzTF96ve\",\"url\":\"https://www.varzesh3.com/?size=1000\",\"loadedUrl\":\"https://www.varzesh3.com/?size=1000\",\"uniqueKey\":\"https://www.varzesh3.com?size=1000\",\"method\":\"GET\",\"noRetry\":false,\"retryCount\":0,\"errorMessages\":[],\"headers\":{},\"userData\":{\"__crawlee\":{\"state\":4}},\"handledAt\":\"2024-12-28T11:30:34.164Z\"}",
+	"method": "GET",
+	"orderNo": null,
+	"retryCount": 0,
+	"uniqueKey": "https://www.varzesh3.com?size=1000",
+	"url": "https://www.varzesh3.com/?size=1000"
+}
