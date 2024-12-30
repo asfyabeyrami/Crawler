@@ -6,6 +6,9 @@ export type ContentDocument = HydratedDocument<content>;
 @Schema()
 export class content {
   @Prop()
+  title: string;
+
+  @Prop()
   description: string;
 
   @Prop()
