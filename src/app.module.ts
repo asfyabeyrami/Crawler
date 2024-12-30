@@ -11,10 +11,16 @@ import {
   content,
   contentSchema,
 } from './DataAccess/mongoose/schema/crawler.schema';
+import { urls, urlsSchema } from './DataAccess/mongoose/schema/url.schema';
+import { ScheduleModule } from '@nestjs/schedule';
 
 @Module({
   imports: [
-    MongooseModule.forFeature([{ name: content.name, schema: contentSchema }]),
+    MongooseModule.forFeature([
+      { name: content.name, schema: contentSchema },
+      { name: urls.name, schema: urlsSchema },
+    ]),
+    ScheduleModule.forRoot(),
     MongooseModule.forRoot('mongodb://127.0.0.1:27017/crawler'),
     // SequelizeModule.forFeature([content]),
     // SequelizeModule.forRoot({

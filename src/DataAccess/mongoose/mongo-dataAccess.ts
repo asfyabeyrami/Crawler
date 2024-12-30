@@ -3,26 +3,48 @@ import { Model } from 'mongoose';
 import { content } from './schema/crawler.schema';
 import { XMLParser } from 'fast-xml-parser';
 import axios from 'axios';
-import { HttpException } from '@nestjs/common';
+import { HttpException, HttpStatus } from '@nestjs/common';
 import { PlaywrightCrawler } from 'crawlee';
+import { urls } from './schema/url.schema';
 
 export class MongoDataAccess {
   constructor(
     @InjectModel(content.name) private readonly contentModel: Model<content>,
+    @InjectModel(urls.name) private readonly urlsModel: Model<urls>,
   ) {}
-  async createContent(description: string, url: string) {
+  async createContent(title: string, description: string, url: string) {
     await this.contentModel.create({
+      title,
       description,
       url,
     });
   }
 
-  async findAll(): Promise<content[]> {
+  async findAllContent(): Promise<content[]> {
     return this.contentModel.find().exec();
+  }
+
+  async findAllUrl(): Promise<urls[]> {
+    return this.urlsModel.find().exec();
   }
 
   async findOne(id: string): Promise<content> {
     return this.contentModel.findOne({ _id: id }).exec();
+  }
+
+  async findOneUrl(id: string): Promise<string | null> {
+    try {
+      const result = await this.urlsModel
+        .findById(id)
+        .select('url -_id')
+        .lean()
+        .exec();
+
+      return result?.url || null;
+    } catch (error) {
+      console.error('خطا در پیدا کردن URL:', error);
+      return null;
+    }
   }
 
   async getSitemapUrls(siteMap: string): Promise<string[]> {
@@ -186,25 +208,112 @@ export class MongoDataAccess {
     }
   }
 
-  async getQavaninLinks(baseUrl: string): Promise<string[]> {
+  async getQavaninLinks(title: string, baseUrl: string) {
     try {
-      console.log('Starting crawl process for:', baseUrl);
+      console.log('شروع فرآیند کرال برای:', baseUrl);
+
+      // تاخیر 3 ثانیه‌ای
       await new Promise((resolve) => setTimeout(resolve, 3000));
 
+      // ساخت URL با پارامتر size
       const url = new URL(baseUrl);
       url.searchParams.set('size', '1000');
 
+      // دریافت همه لینک‌ها
       const links = await this.getAllLinks(url.toString());
-      console.log(`Crawl completed. Found ${links.length} unique links`);
-      return links;
+      console.log(`تعداد لینک‌های یافت شده: ${links.length}`);
+
+      // پردازش لینک‌ها
+      const results = [];
+      for (const link of links) {
+        try {
+          // بررسی تکراری بودن لینک
+          const existingLink = await this.findByUrl(link);
+
+          if (!existingLink) {
+            // ذخیره لینک جدید
+            const savedLink = await this.createUrls(link, title);
+            results.push(savedLink);
+            console.log(`لینک جدید ذخیره شد: ${link}`);
+          } else {
+            console.log(`لینک تکراری است: ${link}`);
+            // اگر می‌خواهید فقط اطلاع‌رسانی شود و پردازش ادامه یابد
+            continue;
+            // اگر می‌خواهید کل فرآیند متوقف شود:
+            // throw new HttpException('لینک تکراری یافت شد', HttpStatus.CONFLICT);
+          }
+        } catch (linkError) {
+          console.error(`خطا در پردازش لینک ${link}:`, linkError);
+          // ادامه پردازش بقیه لینک‌ها
+          continue;
+        }
+      }
+
+      console.log(`کرال تکمیل شد. ${results.length} لینک جدید ذخیره شد`);
+      return results;
     } catch (error) {
-      console.error('Error in getQavaninLinks:', error);
-      return [];
+      console.error('خطا در getQavaninLinks:', error);
+      throw new HttpException(
+        'خطا در دریافت و ذخیره لینک‌ها',
+        HttpStatus.INTERNAL_SERVER_ERROR,
+      );
     }
   }
 
-  async findAllUrl() {
-    const urls = await this.contentModel.find({}, { url: 1, _id: 0 });
-    return urls;
+  async createUrls(url: string, title: string) {
+    try {
+      await this.urlsModel.create({
+        url,
+        title,
+        isCrawl: false,
+      });
+      console.log(`لینک با عنوان "${title}" ذخیره شد: ${url}`);
+    } catch (error) {
+      console.error(`خطا در ذخیره‌سازی لینک ${url}:`, error);
+    }
+  }
+
+  async findOneUnprocessedUrl(): Promise<string | null> {
+    try {
+      const result = await this.urlsModel
+        .findOne({ isCrawl: false })
+        .select('url -_id')
+        .lean()
+        .exec();
+
+      return result?.url || null;
+    } catch (error) {
+      console.error('خطا در پیدا کردن URL پردازش نشده:', error);
+      return null;
+    }
+  }
+
+  async findTitle() {
+    try {
+      const result = await this.urlsModel
+        .findOne({ isCrawl: false })
+        .select('title -_id')
+        .lean()
+        .exec();
+
+      return result?.title || null; // فقط فیلد title رو برمیگردونیم
+    } catch (error) {
+      console.error('خطا در پیدا کردن URL:', error);
+      return null;
+    }
+  }
+
+  async updateCrawlStatus(url: string): Promise<void> {
+    try {
+      await this.urlsModel.updateOne({ url }, { $set: { isCrawl: true } });
+      console.log(`url status successfuly change !:${url}`);
+    } catch (error) {
+      console.error(`faild to update status${url}:`, error);
+    }
+  }
+
+  async findByUrl(link: string) {
+    const result = await this.urlsModel.findOne({ url: link }).exec();
+    return result;
   }
 }

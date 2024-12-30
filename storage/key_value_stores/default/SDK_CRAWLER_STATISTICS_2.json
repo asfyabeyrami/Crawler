@@ -1,50 +1,29 @@
 {
   "requestsFinished": 1,
   "requestsFailed": 0,
-  "requestsRetries": 1,
+  "requestsRetries": 0,
   "requestsFailedPerMinute": 0,
-  "requestsFinishedPerMinute": 1,
-  "requestMinDurationMillis": 17204,
-  "requestMaxDurationMillis": 17204,
+  "requestsFinishedPerMinute": 9,
+  "requestMinDurationMillis": 6004,
+  "requestMaxDurationMillis": 6004,
   "requestTotalFailedDurationMillis": 0,
-  "requestTotalFinishedDurationMillis": 17204,
-  "crawlerStartedAt": "2024-12-28T11:31:16.670Z",
-  "crawlerFinishedAt": "2024-12-28T11:32:06.968Z",
-  "statsPersistedAt": "2024-12-28T11:32:06.968Z",
-  "crawlerRuntimeMillis": 50639,
-  "crawlerLastStartTimestamp": 1735385476329,
+  "requestTotalFinishedDurationMillis": 6004,
+  "crawlerStartedAt": "2024-12-30T15:44:20.272Z",
+  "crawlerFinishedAt": "2024-12-30T15:44:26.538Z",
+  "statsPersistedAt": "2024-12-30T15:44:26.538Z",
+  "crawlerRuntimeMillis": 6524,
+  "crawlerLastStartTimestamp": 1735573460014,
   "requestRetryHistogram": [
-    null,
-    null,
     1
   ],
   "statsId": 2,
   "requestAvgFailedDurationMillis": null,
-  "requestAvgFinishedDurationMillis": 17204,
-  "requestTotalDurationMillis": 17204,
+  "requestAvgFinishedDurationMillis": 6004,
+  "requestTotalDurationMillis": 6004,
   "requestsTotal": 1,
   "requestsWithStatusCode": {
-    "200": 2
+    "200": 1
   },
   "errors": {},
-  "retryErrors": {
-    "D:\\back-end\\play\\Crawler\\src\\DataAccess\\mongoose\\mongo-dataAccess.ts:153:22": {
-      "missing error code": {
-        "Error": {
-          "page.screenshot: Target page, context or browser has been closed": {
-            "count": 1
-          }
-        }
-      }
-    },
-    "D:\\back-end\\play\\Crawler\\node_modules\\@crawlee\\src\\browser-pool.ts:593:19": {
-      "missing error code": {
-        "Error": {
-          "browserController.newPage() failed: -Mdesm3MJj_YvswKJnst2": {
-            "count": 1
-          }
-        }
-      }
-    }
-  }
+  "retryErrors": {}
 }
